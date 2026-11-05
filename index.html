@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#082f2b">
+  <meta name="description" content="Cartwise helps you scan groceries, track budgets, review spending and plan household essentials.">
+  <title>Cartwise — Shop with a plan</title>
+  <link rel="icon" href="assets/app-icon-192.png" type="image/png">
+  <link rel="apple-touch-icon" href="assets/app-icon-192.png">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#home" aria-label="Cartwise home">
+        <img src="assets/cartwise-logo.png" alt="" class="brand-logo">
+        <span class="brand-name">cartwise<span>.</span></span>
+      </a>
+      <nav class="main-nav" aria-label="Main navigation">
+        <a href="#overview">Overview</a>
+        <a href="#shopping-list">Shopping list</a>
+        <a href="#scanner">Scan items</a>
+        <a href="#cart">My cart</a>
+      </nav>
+      <div class="header-actions">
+        <span class="store-pill"><span class="live-dot"></span> Demo store</span>
+        <button class="install-button" id="installBtn" type="button" hidden><img src="assets/icons/download.svg" alt=""> Install app</button>
+      </div>
+      <button class="mobile-menu-button" id="mobileMenuBtn" type="button" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    </div>
+    <nav class="mobile-nav" id="mobileNav" aria-label="Mobile navigation">
+      <a href="#overview">Overview</a><a href="#shopping-list">Shopping list</a><a href="#scanner">Scan items</a><a href="#cart">My cart</a><a href="#money">Money hub</a><a href="#ration">Ration planner</a>
+    </nav>
+  </header>
+
+  <main id="home">
+    <section class="hero section-wrap">
+      <div class="hero-copy reveal">
+        <div class="hero-kicker"><span class="kicker-mark">✦</span> YOUR SMARTER SHOPPING SIDEKICK</div>
+        <h1>Take control<br>of your <span>cart.</span></h1>
+        <p class="hero-description">Scan as you shop, review everyday spending across services, and estimate when your household essentials need a restock. One clearer view of what you spend and what you need.</p>
+        <div class="hero-actions">
+          <a class="button button-primary" href="#scanner">Start scanning <span>↗</span></a>
+          <a class="button button-quiet" href="#shopping-list">Build my list <span>↓</span></a>
+        </div>
+        <div class="hero-proof"><div class="proof-avatars"><span>₹</span><span>✓</span><span>⌁</span></div><p><strong>One live bill.</strong> Your budget stays in sight.</p></div>
+      </div>
+      <div class="hero-visual reveal reveal-delay-2" aria-label="Cartwise shopping dashboard preview">
+        <div class="visual-orbit orbit-one"></div><div class="visual-orbit orbit-two"></div>
+        <div class="floating-chip chip-top"><span class="chip-check">✓</span> List synced</div>
+        <div class="phone-mockup">
+          <div class="phone-camera"></div>
+          <div class="phone-screen">
+            <div class="phone-top"><img src="assets/cartwise-logo.png" alt=""><span>cartwise</span><i></i></div>
+            <p class="phone-label">YOUR LIVE TOTAL</p>
+            <div class="phone-total">₹1,248<span>.00</span></div>
+            <div class="phone-budget"><span>Budget left</span><strong>₹752</strong></div>
+            <div class="phone-progress"><span></span></div>
+            <div class="phone-mini-title">Recently scanned</div>
+            <div class="phone-item"><img src="assets/products/milk.svg" alt=""><span>Milk 1 litre<small>1 pack</small></span><b>₹64</b></div>
+            <div class="phone-item"><img src="assets/products/apples.svg" alt=""><span>Fresh apples<small>1 kg</small></span><b>₹120</b></div>
+            <div class="phone-item"><img src="assets/products/rice.svg" alt=""><span>Basmati rice<small>1 pack</small></span><b>₹145</b></div>
+            <div class="phone-scan"><span>▥</span> Ready for next scan</div>
+          </div>
+        </div>
+        <div class="floating-chip chip-bottom"><span class="chip-leaf">✦</span> Staying on budget</div>
+        <div class="visual-spark spark-a">✳</div><div class="visual-spark spark-b">✦</div>
+      </div>
+    </section>
+
+    <section class="overview-section section-wrap" id="overview">
+      <div class="section-intro reveal">
+        <div><p class="eyebrow">YOUR SHOPPING SNAPSHOT</p><h2>Everything adds up.<br><span>Nothing gets missed.</span></h2></div>
+        <p class="section-intro-copy">Your cart, spending limit and shopping progress — together in one clear view.</p>
+      </div>
+      <div class="overview-grid">
+        <article class="budget-card reveal">
+          <div class="budget-card-top"><div><p class="card-eyebrow">YOUR SHOPPING BUDGET</p><h3 id="budgetAmount">₹2,000</h3></div><button class="edit-budget-button" id="editBudgetBtn" type="button"><span>✎</span> Edit budget</button></div>
+          <div class="budget-meter"><div id="budgetProgress"></div></div>
+          <div class="budget-foot"><span><strong id="spentAmount">₹0.00</strong> spent</span><span><strong id="remainingAmount">₹2,000.00</strong> left</span></div>
+          <p class="budget-warning" id="budgetWarning" role="status" aria-live="polite" hidden></p>
+          <div class="budget-decoration" aria-hidden="true">₹</div>
+        </article>
+        <article class="metric-card metric-total reveal reveal-delay-1"><div class="metric-top"><span class="metric-icon">↗</span><span class="metric-caption">LIVE ESTIMATE</span></div><p class="metric-label">Cart total</p><h3 id="cartTotal">₹0.00</h3><span class="metric-foot">Updates with every scan</span></article>
+        <article class="metric-card metric-items reveal reveal-delay-2"><div class="metric-top"><span class="metric-icon">▤</span><span class="metric-caption">IN YOUR TROLLEY</span></div><p class="metric-label">Items scanned</p><h3><span id="itemCount">0</span><small> items</small></h3><span class="metric-foot">Across <strong id="uniqueCount">0</strong> products</span></article>
+      </div>
+    </section>
+
+    <section class="shopping-list-section section-wrap" id="shopping-list">
+      <div class="section-intro reveal">
+        <div><p class="eyebrow">PLAN BEFORE YOU PICK</p><h2>Your list.<br><span>Your shopping game plan.</span></h2></div>
+        <p class="section-intro-copy">Upload a list from your notes or spreadsheet. Cartwise will match products it recognizes and keep the unscanned items in front of you.</p>
+      </div>
+      <div class="list-workspace reveal">
+        <div class="list-import-column">
+          <div class="list-import-card">
+            <div class="upload-icon">↑</div>
+            <p class="card-eyebrow">IMPORT YOUR SHOPPING LIST</p>
+            <h3>Bring your list along.</h3>
+            <p class="list-help">Upload a <strong>.TXT</strong> or <strong>.CSV</strong> file. One item per line works great. You can also include quantities.</p>
+            <label class="upload-dropzone" for="listFileInput" id="uploadDropzone">
+              <span class="upload-file-icon">＋</span><strong>Choose a file to upload</strong><small>or drag and drop it here</small><em>TXT or CSV · up to 1 MB</em>
+            </label>
+            <input id="listFileInput" class="visually-hidden" type="file" accept=".txt,.csv,.md,text/plain,text/csv">
+            <div class="or-divider"><span>OR ADD ITEMS MANUALLY</span></div>
+            <form class="manual-list-form" id="manualListForm">
+              <label class="visually-hidden" for="listItemInput">Shopping list item</label><input id="listItemInput" type="text" placeholder="e.g. Bananas" maxlength="80" autocomplete="off">
+              <label class="visually-hidden" for="listItemQty">Quantity</label><input id="listItemQty" type="number" min="1" max="99" value="1" aria-label="Quantity">
+              <button type="submit" class="add-list-button">Add item</button>
+            </form>
+            <div class="list-utility-actions"><button id="sampleListBtn" type="button">Download sample list</button><button id="pasteListBtn" type="button">Paste a list instead</button></div>
+            <div class="paste-area" id="pasteArea" hidden><label for="pasteListInput">Paste items, one per line</label><textarea id="pasteListInput" rows="4" placeholder="Milk x 2&#10;Fresh apples&#10;Basmati rice"></textarea><button id="importPastedListBtn" class="small-primary" type="button">Import pasted list</button></div>
+            <p class="import-feedback" id="importFeedback" aria-live="polite"></p>
+          </div>
+        </div>
+        <div class="list-progress-column">
+          <div class="list-progress-card">
+            <div class="list-progress-head"><div><p class="card-eyebrow">SHOPPING CHECKLIST</p><h3>What’s still on your list?</h3></div><button id="clearListBtn" class="subtle-button" type="button" disabled>Clear list</button></div>
+            <div class="list-progress-stats"><div><strong id="listDoneCount">0</strong><span>completed</span></div><div class="list-progress-track"><span id="listProgressFill"></span></div><div><strong id="listTotalCount">0</strong><span>total</span></div></div>
+            <div class="list-items" id="listItems"><div class="list-empty"><span>☑</span><strong>Your list is empty</strong><p>Upload a list or add a few items to get your shopping plan started.</p></div></div>
+            <div class="list-footer"><span class="list-legend"><i class="legend-dot pending"></i> To buy</span><span class="list-legend"><i class="legend-dot done"></i> Scanned</span><span class="list-footer-note" id="listFooterNote">Waiting for your list</span></div>
+          </div>
+          <div class="next-pick-card" id="nextPickCard">
+            <div class="next-pick-icon">✦</div><div><p class="card-eyebrow">YOUR NEXT PICK</p><strong id="nextPickTitle">Upload a list to get suggestions</strong><p id="nextPickCopy">Your remaining items will appear here as a simple shopping guide.</p></div>
+            <a href="#scanner" class="next-pick-link">Go to scanner ↗</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scanner-section" id="scanner">
+      <div class="section-wrap scanner-wrap">
+        <div class="scanner-copy reveal"><p class="eyebrow eyebrow-light">SCAN AS YOU SHOP</p><h2>Pick it.<br><span>Scan it.</span><br>Know the total.</h2><p>Use your phone camera to read a product barcode, or enter the number manually. Your live cart updates in seconds.</p><div class="scanner-perks"><span><i>✓</i> Live price estimate</span><span><i>✓</i> Budget updates</span><span><i>✓</i> List progress tracking</span></div><div class="scanner-note">Camera access works on supported browsers over HTTPS. Demo products use sample prices.</div></div>
+        <div class="scanner-console reveal reveal-delay-1">
+          <div class="console-top"><div><span class="console-dot"></span><span>SCAN STATION</span></div><span class="console-ready">● SYSTEM READY</span></div>
+          <div class="scan-visual" id="scanVisual"><div class="scan-corner corner-tl"></div><div class="scan-corner corner-tr"></div><div class="scan-corner corner-bl"></div><div class="scan-corner corner-br"></div><div class="scan-beam"></div><div class="barcode-graphic"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p>POSITION BARCODE INSIDE THE FRAME</p></div>
+          <button class="camera-scan-button" id="openScannerBtn" type="button"><span>▣</span> Open camera scanner <b>↗</b></button>
+          <form class="barcode-form" id="manualForm"><label for="barcodeInput">OR ENTER BARCODE NUMBER</label><div><input id="barcodeInput" name="barcode" inputmode="numeric" autocomplete="off" placeholder="Type barcode number"><button type="submit">Add item</button></div></form>
+          <p class="console-hint" id="scanHint">A handheld Bluetooth scanner can also type directly into this field.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cart-section section-wrap" id="cart">
+      <div class="section-intro reveal"><div><p class="eyebrow">YOUR LIVE BILL</p><h2>Every item,<br><span>accounted for.</span></h2></div><p class="section-intro-copy">Review the products in your cart, adjust quantities, and download a summary before you reach the checkout counter.</p></div>
+      <div class="cart-layout">
+        <div class="cart-main reveal">
+          <div class="cart-panel-heading"><div><h3>Scanned items <span class="count-badge" id="cartBadge">0</span></h3><p>Products added during this shopping trip</p></div><button class="clear-cart-button" id="clearCartBtn" type="button" disabled>Clear cart</button></div>
+          <div class="cart-list" id="cartList" aria-live="polite"><div class="cart-empty" id="emptyState"><img src="assets/empty-cart.svg" alt=""><h4>Your cart is ready for its first scan</h4><p>Scan an item and it will show up here.</p><a href="#scanner">Scan your first product ↗</a></div></div>
+        </div>
+        <aside class="bill-aside reveal reveal-delay-1">
+          <div class="bill-card"><p class="card-eyebrow">BILL SUMMARY</p><h3>Looking good.</h3><div class="bill-divider"></div><div class="bill-line"><span>Products</span><strong id="billProductCount">0</strong></div><div class="bill-line"><span>Subtotal</span><strong id="subtotalValue">₹0.00</strong></div><div class="bill-line"><span>Taxes & offers</span><span class="bill-muted">At store checkout</span></div><div class="bill-divider"></div><div class="bill-total"><span>Estimated total</span><strong id="footerTotal">₹0.00</strong></div><div class="bill-budget-status" id="billBudgetStatus"><span>●</span> You’re within your budget</div><p class="bill-disclaimer">Demo estimate only. Final prices, taxes and discounts must be confirmed by the store’s billing system.</p><button class="download-summary-button" id="receiptBtn" type="button" disabled>Download shopping summary <span>↓</span></button></div>
+          <div class="bill-tip"><span>✦</span><p><strong>Small tip</strong> Keep your list open while scanning. Cartwise checks off matched products as they enter your cart.</p></div>
+        </aside>
+      </div>
+    </section>
+
+
+    <section class="money-section section-wrap" id="money">
+      <div class="section-intro reveal">
+        <div><p class="eyebrow">YOUR SPENDING, IN ONE PLACE</p><h2>See the little spends.<br><span>Understand the big picture.</span></h2></div>
+        <p class="section-intro-copy">Review small UPI purchases you choose to flag, then view spending snapshots from the shopping and delivery services you use.</p>
+      </div>
+      <div class="demo-data-note reveal"><span class="demo-note-icon">i</span><div><strong>Interactive demo data</strong><p>These sample transactions and store totals are fictional. No bank, UPI or shopping account is connected in this prototype. You decide which expenses are optional; Cartwise does not label purchases as waste automatically.</p></div><span class="demo-tag">DEMO MODE</span></div>
+      <div class="money-overview-grid reveal">
+        <article class="money-stat-card"><span class="money-stat-icon">₹</span><p>UPI spends flagged by you</p><strong id="optionalSpendTotal">₹0</strong><small>Potentially reducible spend in sample review</small></article>
+        <article class="money-stat-card money-stat-highlight"><span class="money-stat-icon">✦</span><p>You could have kept</p><strong id="potentialSavingsTotal">₹0</strong><small>Based only on transactions marked optional</small></article>
+        <article class="money-stat-card"><span class="money-stat-icon">▦</span><p>Connected platform spend</p><strong id="platformSpendTotal">₹0</strong><small id="platformConnectionCount">0 demo connections active</small></article>
+      </div>
+      <div class="money-columns">
+        <article class="money-panel reveal">
+          <div class="panel-heading"><div><p class="card-eyebrow">UPI SPEND REVIEW</p><h3>Small transactions add up.</h3><p>Mark only the purchases you personally consider optional.</p></div><span class="sample-pill">SAMPLE UPI HISTORY</span></div>
+          <div class="savings-callout"><div><span class="callout-label">POTENTIAL SAVINGS</span><strong id="savingsCallout">₹0</strong><p>Across the transactions you flagged</p></div><span class="callout-spark">↗</span></div>
+          <div class="upi-import-row"><label class="small-outline-button" for="upiCsvInput">Import UPI CSV</label><input id="upiCsvInput" class="visually-hidden" type="file" accept=".csv,text/csv"><span>Import stays in this browser</span></div>
+          <div class="transaction-list" id="upiTransactionList" aria-live="polite"></div>
+          <div class="panel-footnote">This is a spending-awareness aid, not financial advice. A small purchase is not automatically unnecessary; review each item based on your own priorities.</div>
+        </article>
+        <article class="money-panel platforms-panel reveal reveal-delay-1">
+          <div class="panel-heading"><div><p class="card-eyebrow">CONNECTED SHOPPING PLATFORMS</p><h3>Your online spend snapshot.</h3><p>Bring orders from different places into one overview.</p></div><span class="sample-pill">DEMO ACCOUNTS</span></div>
+          <div class="platform-total-row"><div><span>Combined sample spend</span><strong id="platformTotalLarge">₹0</strong></div><span class="platform-period">LAST 30 DAYS</span></div>
+          <div class="platform-list" id="platformList"></div>
+          <div class="panel-footnote">In a real release, each provider needs an approved connection method, user consent and secure token handling. This screen simulates those connections and does not request passwords.</div>
+        </article>
+      </div>
+    </section>
+
+    <section class="ration-section" id="ration">
+      <div class="section-wrap">
+        <div class="section-intro reveal">
+          <div><p class="eyebrow">HOUSEHOLD ESSENTIALS</p><h2>Buy in bulk.<br><span>Know when to restock.</span></h2></div>
+          <p class="section-intro-copy">Track larger ration purchases, estimate how long each item will last based on household size and daily consumption, and see which essentials may need replenishing soon.</p>
+        </div>
+        <div class="ration-explainer reveal"><div class="ration-explainer-icon">⌂</div><div><strong>Consumption-aware planning</strong><p>Set the number of people at home and each item's average daily use per person. Cartwise estimates remaining stock and an expected restock date.</p></div><div class="household-control"><label for="householdMembers">People at home</label><div><button type="button" id="householdMinus" aria-label="Decrease household size">−</button><input id="householdMembers" type="number" min="1" max="20" value="4"><button type="button" id="householdPlus" aria-label="Increase household size">＋</button></div></div></div>
+        <div class="ration-summary-grid reveal">
+          <article class="ration-summary-card"><span>TRACKED RATION VALUE</span><strong id="rationTotalValue">₹0</strong><small>Based on purchase amounts entered</small></article>
+          <article class="ration-summary-card"><span>ESSENTIALS TRACKED</span><strong id="rationItemCount">0</strong><small>Items in your household stock list</small></article>
+          <article class="ration-summary-card ration-alert-card"><span>RESTOCK REMINDERS</span><strong id="rationDueCount">0</strong><small>Items estimated to run low within 14 days</small></article>
+        </div>
+        <div class="ration-layout">
+          <article class="ration-panel reveal">
+            <div class="panel-heading"><div><p class="card-eyebrow">YOUR RATION INVENTORY</p><h3>Household essentials</h3><p>Forecasts update when household size or consumption changes.</p></div><button class="small-outline-button" id="enableRationAlerts" type="button">Enable alerts</button></div>
+            <div class="ration-items" id="rationItems" aria-live="polite"></div>
+            <div class="ration-reminder-note" id="rationReminderNote"><span>◷</span><p>Restock reminders will appear here as your estimated supply gets low.</p></div>
+          </article>
+          <article class="ration-add-panel reveal reveal-delay-1">
+            <p class="card-eyebrow">ADD A BULK PURCHASE</p><h3>Track another essential.</h3><p class="ration-form-intro">Enter the quantity bought and typical daily consumption per person.</p>
+            <form id="rationForm" class="ration-form">
+              <label for="rationName">Item name</label><input id="rationName" type="text" maxlength="50" placeholder="e.g. Toor dal" required>
+              <div class="ration-form-row"><div><label for="rationQuantity">Purchased quantity</label><input id="rationQuantity" type="number" min="0.01" max="100000" step="0.01" placeholder="10" required></div><div><label for="rationUnit">Unit</label><select id="rationUnit"><option value="kg">kg</option><option value="L">litres</option><option value="packs">packs</option><option value="units">units</option></select></div></div>
+              <label for="rationDailyUse">Average daily use per person</label><div class="daily-use-input"><input id="rationDailyUse" type="number" min="0.001" max="1000" step="0.001" placeholder="0.04" required><span id="rationUnitHint">kg / person / day</span></div>
+              <div class="ration-form-row"><div><label for="rationCost">Purchase amount (₹)</label><input id="rationCost" type="number" min="0" max="10000000" step="0.01" placeholder="1500"></div><div><label for="rationPurchaseDate">Purchase date</label><input id="rationPurchaseDate" type="date" required></div></div>
+              <button class="primary-button" type="submit">＋ Add to ration tracker</button>
+            </form>
+          </article>
+        </div>
+        <p class="ration-method-note">Estimates assume consumption stays constant. Actual usage can change due to guests, travel, waste or changing household routines. Open Cartwise to refresh estimates; background reminders require a separate notification service.</p>
+      </div>
+    </section>
+
+    <section class="catalog-section section-wrap">
+      <div class="catalog-heading reveal"><div><p class="eyebrow">TRY THE DEMO</p><h2>Tap to add a <span>sample scan.</span></h2><p>These sample products let you test the cart without a physical barcode.</p></div><span class="catalog-tag">SAMPLE CATALOGUE</span></div>
+      <div class="product-grid" id="productGrid">
+        <button class="product-card reveal" type="button" data-barcode="8901000000011"><span class="product-art"><img src="assets/products/apples.svg" alt=""></span><span class="product-name">Fresh apples</span><span class="product-detail">1 kg</span><span class="product-price">₹120.00 <i>＋</i></span></button>
+        <button class="product-card reveal reveal-delay-1" type="button" data-barcode="8901000000028"><span class="product-art"><img src="assets/products/milk.svg" alt=""></span><span class="product-name">Milk 1 litre</span><span class="product-detail">1 pack</span><span class="product-price">₹64.00 <i>＋</i></span></button>
+        <button class="product-card reveal reveal-delay-2" type="button" data-barcode="8901000000035"><span class="product-art"><img src="assets/products/bread.svg" alt=""></span><span class="product-name">Whole wheat bread</span><span class="product-detail">1 loaf</span><span class="product-price">₹48.00 <i>＋</i></span></button>
+        <button class="product-card reveal" type="button" data-barcode="8901000000042"><span class="product-art"><img src="assets/products/rice.svg" alt=""></span><span class="product-name">Basmati rice 1 kg</span><span class="product-detail">1 pack</span><span class="product-price">₹145.00 <i>＋</i></span></button>
+        <button class="product-card reveal reveal-delay-1" type="button" data-barcode="8901000000059"><span class="product-art"><img src="assets/products/eggs.svg" alt=""></span><span class="product-name">Eggs (6 pack)</span><span class="product-detail">1 pack</span><span class="product-price">₹54.00 <i>＋</i></span></button>
+        <button class="product-card reveal reveal-delay-2" type="button" data-barcode="8901000000066"><span class="product-art"><img src="assets/products/oil.svg" alt=""></span><span class="product-name">Cooking oil 1 L</span><span class="product-detail">1 bottle</span><span class="product-price">₹158.00 <i>＋</i></span></button>
+      </div>
+    </section>
+
+    <section class="how-section">
+      <div class="section-wrap">
+        <div class="how-heading reveal"><p class="eyebrow">YOUR EVERYDAY MONEY ROUTINE</p><h2>Know what you spend.<br><span>Plan what comes next.</span></h2></div>
+        <div class="how-grid">
+          <article class="how-card reveal"><div class="how-number">01</div><div class="how-icon">▥</div><h3>Track while you shop</h3><p>Upload your list, scan grocery products and watch your running total and remaining budget update.</p></article>
+          <article class="how-card reveal reveal-delay-1"><div class="how-number">02</div><div class="how-icon">₹</div><h3>Review your spending</h3><p>See demo or imported UPI transactions alongside online platform spending, and identify purchases you choose to cut back on.</p></article>
+          <article class="how-card reveal reveal-delay-2"><div class="how-number">03</div><div class="how-icon">⌂</div><h3>Plan household essentials</h3><p>Estimate how long bulk ration purchases may last and see which items could need restocking soon.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="closing-cta section-wrap reveal"><div><p class="eyebrow">READY WHEN YOU ARE</p><h2>Make every scan<br><span>count.</span></h2><p>Your shopping plan is one tap away.</p></div><a href="#shopping-list" class="button button-light">Start with your list <span>↗</span></a><div class="closing-logo"><img src="assets/cartwise-logo.png" alt=""></div></section>
+  </main>
+
+  <footer class="site-footer"><div class="section-wrap footer-inner"><a class="footer-brand" href="#home"><img src="assets/cartwise-logo.png" alt=""><span>cartwise<span>.</span></span></a><p>Shop with clarity. Spend with confidence.</p><span class="footer-legal">Prototype · Sample UPI, platform and catalogue data</span></div></footer>
+
+  <dialog class="modal" id="budgetDialog" aria-labelledby="budgetDialogTitle"><form method="dialog" class="modal-card" id="budgetForm"><button class="modal-close" type="button" data-close="budgetDialog" aria-label="Close">×</button><p class="eyebrow">SET YOUR LIMIT</p><h2 id="budgetDialogTitle">What’s your shopping budget?</h2><p class="modal-copy">We'll keep your running total and remaining balance in view.</p><label class="field-label" for="budgetInput">Budget amount (₹)</label><input class="large-input" id="budgetInput" type="number" inputmode="decimal" min="1" max="10000000" step="1" placeholder="2000" required><button class="primary-button" type="submit">Save budget</button></form></dialog>
+
+  <dialog class="modal scanner-modal" id="scannerDialog" aria-labelledby="scannerTitle"><div class="modal-card scanner-card"><div class="scanner-modal-head"><div><p class="eyebrow">CAMERA SCANNER</p><h2 id="scannerTitle">Point at a barcode</h2></div><button class="modal-close inline-close" type="button" data-close="scannerDialog" aria-label="Close">×</button></div><div class="camera-stage" id="cameraStage"><video id="cameraVideo" playsinline muted></video><div class="camera-placeholder" id="cameraPlaceholder"><div class="scan-frame"><span></span></div><p>Camera preview will appear here</p></div><div class="scan-line"></div></div><p class="camera-message" id="cameraMessage" role="status" aria-live="polite">Allow camera access to scan a product barcode.</p><div class="scanner-controls"><button class="primary-button" id="startCameraBtn" type="button">Start camera</button><button class="secondary-button" id="stopCameraBtn" type="button" disabled>Stop camera</button></div><p class="scanner-fallback">Camera scanning needs a supported browser and secure HTTPS connection. Manual barcode entry is always available.</p></div></dialog>
+
+  <dialog class="modal" id="customProductDialog" aria-labelledby="customProductTitle"><form method="dialog" class="modal-card" id="customProductForm"><button class="modal-close" type="button" data-close="customProductDialog" aria-label="Close">×</button><p class="eyebrow">PRODUCT NOT IN CATALOGUE</p><h2 id="customProductTitle">Add this product</h2><p class="modal-copy">This barcode isn't in the sample catalogue. Enter the product details to add it to your local cart.</p><label class="field-label" for="customName">Product name</label><input class="large-input" id="customName" required placeholder="e.g. Orange juice"><label class="field-label" for="customPrice">Price (₹)</label><input class="large-input" id="customPrice" type="number" min="0.01" step="0.01" required placeholder="99"><input id="customBarcode" type="hidden"><button class="primary-button" type="submit">Add to cart</button></form></dialog>
+
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Back to top">↑</button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script src="script.js" defer></script>
+  <script src="money-ration.js" defer></script>
+</body>
+</html>
